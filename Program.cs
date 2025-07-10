@@ -17,6 +17,10 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
+//automapper
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+
 // EF Core
 builder.Services.AddDbContext<GasDbContext>(options =>
 {
