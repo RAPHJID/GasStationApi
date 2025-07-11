@@ -1,6 +1,8 @@
 using GasStationApi.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models; // ✅ Add this line
+using Microsoft.OpenApi.Models; 
+using GasStationApi.Mappings;
+
 
 var builder = WebApplication.CreateBuilder(args);
 

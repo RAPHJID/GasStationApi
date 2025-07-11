@@ -1,5 +1,10 @@
 using GasStationApi.Data;
 using AutoMapper;
+using GasStationApi.Models.DTOs;
+using Microsoft.EntityFrameworkCore;
+using GasStationApi.Services.IServices;
+using GasStationApi.Models;
+
 
 namespace GasStationApi.Services
 {
@@ -20,7 +25,7 @@ namespace GasStationApi.Services
             return _mapper.Map<CustomerDTO>(customers);
         }
         
-        public async Task<CustomerDTO> GetCustomerByIdAsync(Guid customerId)
+        public async Task<CustomerDTO?> GetCustomerByIdAsync(Guid customerId)
         {
             var customer = await _context.Customers.FirstOrDefaultAsync(c => c.Id == customerId);
             if(customer == null)  return null;
@@ -44,7 +49,7 @@ namespace GasStationApi.Services
 
         public async Task DeleteCustomerAsync(Guid customerId)
         {
-            vat customer = await _context.Customers.FindAsync(customerId);
+            var customer = await _context.Customers.FindAsync(customerId);
             if(customer == null) return;
             _context.Customers.Remove(customer);
             await _context.SaveChangesAsync();

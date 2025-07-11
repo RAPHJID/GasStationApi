@@ -9,9 +9,8 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         // Customer
-        CreateMap<Customer, CustomerDto>().ReverseMap();
-        CreateMap<CreateCustomerDto, Customer>();
-        CreateMap<UpdateCustomerDto, Customer>();
+        CreateMap<Customer, CustomerDTO>().ReverseMap();
+        CreateMap<AddUpdateCustomerDTO, Customer>();
 
         // Cylinder
         CreateMap<Cylinder, CylinderDto>().ReverseMap();
