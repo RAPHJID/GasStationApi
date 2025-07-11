@@ -2,11 +2,15 @@ using GasStationApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models; 
 using GasStationApi.Mappings;
-
+using GasStationApi.Services;
+using GasStationApi.Services.IServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddScoped<ICustomer, CustomerService>();
+
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

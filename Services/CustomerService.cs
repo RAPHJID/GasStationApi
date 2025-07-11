@@ -21,8 +21,8 @@ namespace GasStationApi.Services
 
         public async Task<List<CustomerDTO>> GetAllCustomersAsync()
         {
-            var customers = await _context.Customers.ListAsync();
-            return _mapper.Map<CustomerDTO>(customers);
+            var customers = await _context.Customers.ToListAsync();
+            return _mapper.Map<List<CustomerDTO>>(customers);
         }
         
         public async Task<CustomerDTO?> GetCustomerByIdAsync(Guid customerId)
@@ -35,8 +35,10 @@ namespace GasStationApi.Services
         public async Task<CustomerDTO> AddCustomerAsync(AddUpdateCustomerDTO newCustomer)
         {
             var customer = _mapper.Map<Customer>(newCustomer);
+            customer.Id = Guid.NewGuid();
             await _context.Customers.AddAsync(customer);
             await _context.SaveChangesAsync();
+            return _mapper.Map<CustomerDTO>(customer);
         }
 
         public async Task UpdateCustomerAsync(Guid customerId, AddUpdateCustomerDTO updateCustomer)

@@ -13,15 +13,14 @@ public class MappingProfile : Profile
         CreateMap<AddUpdateCustomerDTO, Customer>();
 
         // Cylinder
-        CreateMap<Cylinder, CylinderDto>().ReverseMap();
-        CreateMap<CreateCylinderDto, Cylinder>();
-        CreateMap<UpdateCylinderDto, Cylinder>();
+        CreateMap<Cylinder, CylinderDTO>().ReverseMap();
+        CreateMap<AddUpdateCylinderDTO, Cylinder>();
 
         // Inventory
-        CreateMap<Inventory, InventoryDto>().ReverseMap();
+        CreateMap<Inventory, InventoryDTO>().ReverseMap();
 
         // Transaction
-        CreateMap<Transaction, TransactionDto>().ReverseMap();
-        CreateMap<CreateTransactionDto, Transaction>();
+        CreateMap<Transaction, TransactionDTO>().ReverseMap();
+        CreateMap<AddTransactionDTO, Transaction>();
     }
 }
