@@ -8,11 +8,11 @@ namespace GasStationApi.Controllers
     [ApiController]
     [Route("[controller]")]
 
-    public class CyllnderController : ControllerBase
+    public class CylinderController : ControllerBase
     {
         private readonly ICylinder _cylinderService;
 
-        public Cylinder(ICylinder cylinderService)
+        public CylinderController(ICylinder cylinderService)
         {
             _cylinderService = cylinderService;
         }
@@ -46,7 +46,7 @@ namespace GasStationApi.Controllers
         }
 
         [HttpPut("{cylinderId}")]
-        public async Task UpdateCylinder(AddUpdateCylinderDTO updatedCylinder, Guid cylinderId)
+        public async Task<IActionResult> UpdateCylinder(AddUpdateCylinderDTO updatedCylinder, Guid cylinderId)
         {
             var existing = await _cylinderService.GetCylinderByIdAsync(cylinderId);
             var response = new ResponseDto();
@@ -56,12 +56,12 @@ namespace GasStationApi.Controllers
                 response.ErrorMessage = $"Cylinder with ID {cylinderId} not found";
                 return NotFound(response);
             }
-            await _cylinderService.UpdateCylinderAsync(updatedCylinder);
+            await _cylinderService.UpdateCylinderAsync(updatedCylinder, cylinderId);
             return Ok(updatedCylinder);
         }
 
         [HttpDelete]
-        public async Task DeleteCylinder(Guid cylinderId)
+        public async Task<IActionResult> DeleteCylinder(Guid cylinderId)
         {
             var cylinder = await _cylinderService.GetCylinderByIdAsync(cylinderId);
             var response = new ResponseDto();

@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddScoped<ICustomer, CustomerService>();
+builder.Services.AddScoped<ICylinder, CylinderService>();
 
 
 builder.Services.AddControllers();
