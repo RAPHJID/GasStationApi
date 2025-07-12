@@ -2,7 +2,9 @@ namespace GasStationApi.Models.DTOs
 {
     public class InventoryDTO
     {
-        public decimal QuantityAvailable {get;set;}
+        public Guid Id { get; set; }
+        public decimal QuantityAvailable { get; set; }
+        public DateTime LastUpdated { get; set; }
         
     }
 }
