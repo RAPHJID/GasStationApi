@@ -17,9 +17,10 @@ public class MappingProfile : Profile
         CreateMap<AddUpdateCylinderDTO, Cylinder>();
 
         // Inventory
-        CreateMap<Inventory, InventoryDTO>().ReverseMap();
+        CreateMap<Inventory, InventoryDTO>()
+            .ForMember(dest => dest.CylinderType, opt => opt.MapFrom(src => src.Cylinder.Type)) // <-- maps Cylinder.Type
+            .ReverseMap();
         CreateMap<AddUpdateInventory, Inventory>().ReverseMap();
-
 
         // Transaction
         CreateMap<Transaction, TransactionDTO>().ReverseMap();

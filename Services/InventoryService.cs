@@ -20,7 +20,9 @@ namespace GasStationApi.Services
 
         public async Task<List<InventoryDTO>> GetAllInventoryAsync()
         {
-            var inventories = await _context.Inventory.ToListAsync();
+            var inventories = await _context.Inventory
+            .Include(i => i.Cylinder)
+            .ToListAsync();
             return _mapper.Map<List<InventoryDTO>>(inventories);
         } 
 
@@ -37,6 +39,9 @@ namespace GasStationApi.Services
             inventory.Id = Guid.NewGuid();
             await _context.Inventory.AddAsync(inventory);
             await _context.SaveChangesAsync();
+            
+             // Include Cylinder for mapping
+            await _context.Entry(inventory).Reference(i => i.Cylinder).LoadAsync();
             return _mapper.Map<InventoryDTO>(inventory);
         }
 
