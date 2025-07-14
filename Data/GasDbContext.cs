@@ -27,6 +27,11 @@ namespace GasStationApi.Data
                 .HasOne(t => t.Cylinder)
                 .WithMany()
                 .HasForeignKey(t => t.CylinderId);
+            modelBuilder.Entity<Inventory>()
+                .HasOne(i => i.Cylinder)
+                .WithMany()
+                .HasForeignKey(i => i.CylinderId);
+            
         }
     }
 }
