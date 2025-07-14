@@ -24,7 +24,7 @@ namespace GasStationApi.Services
             return _mapper.Map<List<CylinderDTO>>(cylinders);
         }
 
-        public async Task<CylinderDTO> GetCylinderByIdAsync(Guid cylinderId)
+        public async Task<CylinderDTO?> GetCylinderByIdAsync(Guid cylinderId)
         {
             var cylinder = await _context.Cylinders.FirstOrDefaultAsync(c => c.Id == cylinderId);
             if(cylinder == null) return null;

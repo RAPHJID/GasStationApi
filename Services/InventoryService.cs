@@ -24,7 +24,7 @@ namespace GasStationApi.Services
             return _mapper.Map<List<InventoryDTO>>(inventories);
         } 
 
-        public async Task<InventoryDTO> GetInventoryByIdAsync(Guid inventoryId)
+        public async Task<InventoryDTO?> GetInventoryByIdAsync(Guid inventoryId)
         {
             var inventory = await _context.Inventory.FirstOrDefaultAsync(i => i.Id == inventoryId);
             if(inventory == null) return null;

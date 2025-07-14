@@ -18,6 +18,8 @@ public class MappingProfile : Profile
 
         // Inventory
         CreateMap<Inventory, InventoryDTO>().ReverseMap();
+        CreateMap<AddUpdateInventory, Inventory>().ReverseMap();
+
 
         // Transaction
         CreateMap<Transaction, TransactionDTO>().ReverseMap();
