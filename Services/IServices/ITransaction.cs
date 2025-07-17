@@ -5,11 +5,11 @@ namespace GasStationApi.Service.IService
     public interface ITransaction
     {
         Task<List<TransactionDTO>> GetAllTransactionsAsync();
-        Task<TransactionDTO?> GetTransactionByIdAsync(Guid id);
+        Task<TransactionDTO?> GetTransactionByIdAsync(Guid transactionId);
         Task<List<TransactionDTO>> GetTransactionsByDateAsync(DateTime date);
         Task<List<TransactionDTO>> GetTransactionsByCustomerAsync(Guid customerId);
 
         Task<TransactionDTO> CreateTransactionAsync(AddTransactionDTO transactionDto);
-        Task<bool> DeleteTransactionAsync(Guid id);
+        Task<bool> DeleteTransactionAsync(Guid transactionId);
     }
 }
