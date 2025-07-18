@@ -10,9 +10,9 @@ namespace GasStationApi.Controllers
 
     public class TransactionController : ControllerBase
     {
-        private readonly TransactionService _service;
+        private readonly ITransaction _service;
 
-        public TransactionController(TransactionService service)
+        public TransactionController(ITransaction service)
         {
             _service = service;
         }
@@ -24,7 +24,7 @@ namespace GasStationApi.Controllers
             return Ok(transactions);
         }
 
-        [HttpGet("{transactionId}")]
+        [HttpGet("by-id/{transactionId}")]
         public async Task<IActionResult> GetTransactionById(Guid transactionId)
         {
             var transaction = await _service.GetTransactionByIdAsync(transactionId);
@@ -38,14 +38,14 @@ namespace GasStationApi.Controllers
             return Ok(transaction);
         }
 
-        [HttpGet("{transactionDate}")]
+        [HttpGet("by-date/{transactionDate}")]
         public async Task<IActionResult> GetTransactionsByDate(DateTime date)
         {
             var transactions = await _service.GetTransactionsByDateAsync(date);
             return Ok(transactions);
         }
 
-        [HttpGet("{customerId}")]
+        [HttpGet("by-customer/{customerId}")]
         public async Task<IActionResult> GetTransactionsByCustomer(Guid customerId)
         {
             var transactions = await _service.GetTransactionsByCustomerAsync(customerId);
