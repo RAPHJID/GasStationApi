@@ -20,13 +20,19 @@ namespace GasStationApi.Services
 
         public async Task<List<TransactionDTO>> GetAllTransactionsAsync()
         {
-            var transactions = await _context.Transactions.ToListAsync();
+            var transactions = await _context.Transactions
+            .Include(t => t.Customer)
+            .Include(t => t.Cylinder)
+            .ToListAsync();
             return _mapper.Map<List<TransactionDTO>>(transactions);
         }
 
         public async Task<TransactionDTO?> GetTransactionByIdAsync(Guid transactionId)
         {
-            var transaction = await _context.Transactions.FirstOrDefaultAsync(t => t.Id == transactionId);
+            var transaction = await _context.Transactions
+            .Include(t => t.Customer)
+            .Include(t => t.Cylinder)
+            .FirstOrDefaultAsync(t =>t.Id == transactionId);
             if(transaction == null) return null;
             return _mapper.Map<TransactionDTO>(transaction);
         }
@@ -34,6 +40,8 @@ namespace GasStationApi.Services
         public async Task<List<TransactionDTO>> GetTransactionsByDateAsync(DateTime date)
         {
             var transactions = await _context.Transactions
+            .Include(t => t.Customer)
+            .Include(t => t.Cylinder)
             .Where(t => t.Date.Date == date.Date)
             .ToListAsync();
             return _mapper.Map<List<TransactionDTO>>(transactions);
@@ -43,6 +51,8 @@ namespace GasStationApi.Services
         public async Task<List<TransactionDTO>> GetTransactionsByCustomerAsync(Guid customerId)
         {
             var transactions = await _context.Transactions
+            .Include(t => t.Customer)
+            .Include(t => t.Cylinder)
             .Where(t => t.CustomerId == customerId)
             .ToListAsync();
             return _mapper.Map<List<TransactionDTO>>(transactions);

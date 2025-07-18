@@ -38,7 +38,7 @@ namespace GasStationApi.Controllers
             return Ok(transaction);
         }
 
-        [HttpGet("by-date/{transactionDate}")]
+        [HttpGet("by-date/{date}")]
         public async Task<IActionResult> GetTransactionsByDate(DateTime date)
         {
             var transactions = await _service.GetTransactionsByDateAsync(date);

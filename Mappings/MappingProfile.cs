@@ -23,7 +23,11 @@ public class MappingProfile : Profile
         CreateMap<AddUpdateInventory, Inventory>().ReverseMap();
 
         // Transaction
-        CreateMap<Transaction, TransactionDTO>().ReverseMap();
+        CreateMap<Transaction, TransactionDTO>()
+            .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.FullName))
+            .ForMember(dest => dest.CylinderType, opt => opt.MapFrom(src => src.Cylinder.Type))
+            .ForMember(dest => dest.CylinderBrand, opt => opt.MapFrom(src => src.Cylinder.Brand));
+
         CreateMap<AddTransactionDTO, Transaction>();
     }
 }
