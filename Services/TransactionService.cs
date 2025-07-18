@@ -54,8 +54,9 @@ namespace GasStationApi.Services
             var transaction = _mapper.Map<Transaction>(transactionDto);
             transaction.Id = Guid.NewGuid();
             transaction.Date = DateTime.Now;
-            await _context.Transactions.AddAsync(transactionDto);
+            await _context.Transactions.AddAsync(transaction);
             await _context.SaveChangesAsync();
+            return _mapper.Map<TransactionDTO>(transaction);
 
         }
 

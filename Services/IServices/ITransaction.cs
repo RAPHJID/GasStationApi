@@ -1,6 +1,6 @@
 using GasStationApi.Models.DTOs;
 
-namespace GasStationApi.Service.IService
+namespace GasStationApi.Services.IServices
 {
     public interface ITransaction
     {

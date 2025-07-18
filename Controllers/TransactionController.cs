@@ -60,7 +60,7 @@ namespace GasStationApi.Controllers
             if(transaction == null)
             {
                 response.Success = false;
-                response.ErrorMessage = $"Transaction with Id {transactionId} not found";
+                response.ErrorMessage = $"Transaction not found";
                 return NotFound(response);
             }
             return Ok(transaction);
@@ -70,7 +70,7 @@ namespace GasStationApi.Controllers
         [HttpDelete("{transactionId}")]
         public async Task<IActionResult> DeleteTransaction(Guid transactionId)
         {
-            var transaction = await _service.GetTransactionById(transactionId);
+            var transaction = await _service.GetTransactionByIdAsync(transactionId);
             var response = new ResponseDto();
             if(transaction == null)
             {

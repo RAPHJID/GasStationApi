@@ -12,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<ICustomer, CustomerService>();
 builder.Services.AddScoped<ICylinder, CylinderService>();
 builder.Services.AddScoped<InventoryInterface, InventoryService>();
+builder.Services.AddScoped<ITransaction, TransactionService>();
 
 
 builder.Services.AddControllers();
